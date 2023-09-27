@@ -31,8 +31,8 @@ module Searchkick
           self.class.searchkick_index.reindex([self], method_name: method_name, mode: mode, refresh: refresh, single: true)
         end unless base.method_defined?(:reindex)
 
-        def similar(**options)
-          self.class.searchkick_index.similar_record(self, **options)
+        def similar(**options, &block)
+          self.class.searchkick_index.similar_record(self, **options, &block)
         end unless base.method_defined?(:similar)
 
         def search_data

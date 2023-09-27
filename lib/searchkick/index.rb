@@ -180,12 +180,12 @@ module Searchkick
       RecordData.new(self, record).document_type
     end
 
-    def similar_record(record, **options)
+    def similar_record(record, **options, &block)
       options[:per_page] ||= 10
       options[:similar] = [RecordData.new(self, record).record_data]
       options[:models] ||= [record.class] unless options.key?(:model)
 
-      Searchkick.search("*", **options)
+      Searchkick.search("*", **options, &block)
     end
 
     def reload_synonyms
